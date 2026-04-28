@@ -8,7 +8,6 @@ if user_input:
 
     text = user_input.lower()
 
-    # simple chatbot responses
     if text == "hello":
         st.write("Bot: Hello! 👋")
 
@@ -34,6 +33,14 @@ if user_input:
             st.write("Saved Case:")
             st.write("Case:", case)
             st.write("Goal:", goal)
+
+            # NEW STEP AFTER GOAL
+            st.write("Cool, now we got your goal. Now it's time to give you pains.")
+
+            st.write("Pains:")
+            st.write("Pain 1:")
+            st.write("Pain 2:")
+            st.write("Pain 3:")
 
     else:
         st.write("Bot: I don't understand that yet.")
