@@ -4,7 +4,7 @@ st.title("AI Business Assistant")
 
 user_input = st.text_input("You:")
 text = "Hi there, I have a new case"
-
+if user_input:
 clean_text = text.lower()
 
 if "new case" in clean_text:
