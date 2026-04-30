@@ -144,7 +144,10 @@ if user_input:
         else:
             st.write("No corrections saved yet.")
 #plan instructions
-elif "plan" in clean_text:
+if user_input:
+    clean_text = user_input.lower()
+
+if "plan" in clean_text:
     plan_input = st.text_input("Please write your plan:")
 
     if plan_input:
