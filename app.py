@@ -19,6 +19,9 @@ if "corrections" not in st.session_state:
 
 if "plan" not in st.session_state:
     st.session_state.plan = ""
+    
+if "steps" not in st.session_state:
+    st.session_state = []
 
 if "final_plan"not in st.session_state:
     st.session_state.final_plan = ""
@@ -167,8 +170,25 @@ if user_input:
                     st.write(f"b{i+1}. {c}")
             else:
                 st.write("No corrections saved yet.")
+    # Steps instructions
+if user_input:
+    clean_text = user_input.lower()
 
+    if "steps" in clean_text:
+        steps = st.text_input("Please paste your steps:")
 
+        if steps:
+            st.session_state.steps = steps
+            st.write("Saved!")
+
+    elif "my steps" in clean_text:
+        if st.session_state.steps:
+            st.write("Your steps:", st.session_state.steps)
+
+        else:
+            st.write("No steps saved yet.")
+
+    
 
 
 
