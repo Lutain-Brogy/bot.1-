@@ -20,6 +20,9 @@ if "corrections" not in st.session_state:
 if "plan" not in st.session_state:
     st.session_state.plan = ""
 
+if "final_plan"not in st.session_state:
+    st.session_state.final_plan = ""
+
 if "final_corrections" not in st.session_state:
     st.session_state.final_corrections = []
 
@@ -138,6 +141,27 @@ if user_input:
             for i, c in enumerate(st.session_state.corrections):
                 st.write(f"b{i+1}. {c}")
 
+        else:
+            st.write("No corrections saved yet.")
+#plan instructions
+elif "plan" in clean_text:
+    plan_input = st.text_input("Please write your plan:")
+
+    if plan_input:
+        st.session_state.plan = plan_input
+        st.write("Plan saved!")
+
+    # SHOW PLAN
+    if st.session_state.plan:
+        st.write("📌 PLAN:")
+        st.write(st.session_state.plan)
+
+        # SHOW CORRECTIONS BELOW
+        st.write("📎 CORRECTIONS:")
+
+        if st.session_state.corrections:
+            for i, c in enumerate(st.session_state.corrections):
+                st.write(f"b{i+1}. {c}")
         else:
             st.write("No corrections saved yet.")
 
