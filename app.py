@@ -107,6 +107,36 @@ if user_input:
         else:
             st.write("No factors saved yet.")
 
+# Corrections instructions
+elif "new corrections" in clean_text:
+    correction_input = st.text_input("Please paste your corrections here:")
+
+    if correction_input:
+        import re
+
+        correction_parts = re.split(r"b\d+", correction_input.lower())
+
+        cleaned_corrections = []
+
+        for c in correction_parts:
+            c = c.strip()
+
+            if c:
+                cleaned_corrections.append(c)
+
+        st.session_state.corrections = cleaned_corrections
+
+        st.write("Corrections saved!")
+
+elif "my corrections" in clean_text:
+    if st.session_state.corrections:
+        st.write("Your corrections:")
+
+        for i, c in enumerate(st.session_state.corrections):
+            st.write(f"b{i+1}. {c}")
+
+    else:
+        st.write("No corrections saved yet.")
 
 
 
