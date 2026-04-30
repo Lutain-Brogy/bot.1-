@@ -74,35 +74,39 @@ if user_input:
         else:
             st.write("No pains saved yet.")
   # Factors instructions
-elif "new factors" in clean_text:
-    factor_input = st.text_input("Please paste your factors here:")
+if user_input:
+    clean_text = user_input.lower()
 
-    if factor_input:
-        import re
+    if "new factors" in clean_text:
+        factor_input = st.text_input("Please paste your factors here:")
 
-        factor_parts = re.split(r"a\d+", factor_input.lower())
+        if factor_input:
+            import re
 
-        cleaned_factors = []
+            factor_parts = re.split(r"a\d+", factor_input.lower())
 
-        for f in factor_parts:
-            f = f.strip()
+            cleaned_factors = []
 
-            if f:
-                cleaned_factors.append(f)
+            for f in factor_parts:
+                f = f.strip()
 
-        st.session_state.factors = cleaned_factors
+                if f:
+                    cleaned_factors.append(f)
 
-        st.write("Factors saved!")
+            st.session_state.factors = cleaned_factors
 
-elif "my factors" in clean_text:
-    if st.session_state.factors:
-        st.write("Your factors:")
+            st.write("Factors saved!")
 
-        for i, factor in enumerate(st.session_state.factors):
-            st.write(f"a{i+1}. {factor}")
+    elif "my factors" in clean_text:
+        if st.session_state.factors:
+            st.write("Your factors:")
 
-    else:
-        st.write("No factors saved yet.")
+            for i, factor in enumerate(st.session_state.factors):
+                st.write(f"a{i+1}. {factor}")
+
+        else:
+            st.write("No factors saved yet.")
+
 
 
 
