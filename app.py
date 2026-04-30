@@ -2,86 +2,42 @@ import streamlit as st
 
 st.title("AI Business Assistant")
 
-# -------------------------
-# MEMORY SETUP
-# -------------------------
+user_input = st.text_input("You:")
 
-if "step" not in st.session_state:
-    st.session_state.step = None
-
+# 🧠 MEMORY (session state first)
 if "case" not in st.session_state:
-    st.session_state.case = None
+    st.session_state.case = ""
 
 if "pains" not in st.session_state:
     st.session_state.pains = []
 
-# -------------------------
-# USER INPUT
-# -------------------------
+if "factors" not in st.session_state:
+    st.session_state.factors = []
 
-user_input = st.text_input("You:")
+if "corrections" not in st.session_state:
+    st.session_state.corrections = []
 
+if "plan" not in st.session_state:
+    st.session_state.plan = ""
+
+if "final_corrections" not in st.session_state:
+    st.session_state.final_corrections = []
+
+# 🧠 INPUT GATE
 if user_input:
-
     clean_text = user_input.lower()
 
-    # -------------------------
-    # START NEW CASE
-    # -------------------------
     if "new case" in clean_text:
-        st.session_state.step = "waiting_case"
-        st.session_state.case = None
-        st.session_state.pains = []
-        st.write("Cool, please state your case.")
+        new_case = st.text_input("Please paste your case:")
 
-    # -------------------------
-    # SAVE CASE
-    # -------------------------
-    elif st.session_state.step == "waiting_case":
-        st.session_state.case = user_input
-        st.session_state.step = "waiting_pains"
+        if new_case:
+            st.session_state.case = new_case
+            st.write("Saved!")
 
-        st.write(f"Your saved case is: {st.session_state.case}")
-        st.write("Please give your pains:")
-        st.write("A.")
-        st.write("B.")
-
-    # -------------------------
-    # SAVE PAINS
-    # -------------------------
-    elif st.session_state.step == "waiting_pains":
-
-        st.session_state.pains.append(user_input)
-        st.write(f"- {user_input}")
-
-        if len(st.session_state.pains) == 2:
-            st.write("Pains saved successfully.")
-            st.session_state.step = "done"
-
-    # -------------------------
-    # SHOW CASE
-    # -------------------------
-    elif "my case" in clean_text or "show case" in clean_text:
-
+    elif "my case" in clean_text:
         if st.session_state.case:
-            st.write(f"Your saved case is: {st.session_state.case}")
+            st.write("Your case:", st.session_state.case)
+
         else:
             st.write("No case saved yet.")
 
-    # -------------------------
-    # SHOW PAINS
-    # -------------------------
-    elif "my pains" in clean_text or "show pains" in clean_text:
-
-        if st.session_state.pains:
-            st.write("Here are your pains:")
-            for p in st.session_state.pains:
-                st.write(f"- {p}")
-        else:
-            st.write("No pains saved yet.")
-
-    # -------------------------
-    # DEFAULT RESPONSE
-    # -------------------------
-    else:
-        st.write("Hello, how can I help?")
