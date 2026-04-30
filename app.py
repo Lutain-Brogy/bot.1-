@@ -108,35 +108,39 @@ if user_input:
             st.write("No factors saved yet.")
 
 # Corrections instructions
-elif "new corrections" in clean_text:
-    correction_input = st.text_input("Please paste your corrections here:")
+if user_input:
+    clean_text = user_input.lower()
 
-    if correction_input:
-        import re
+    if "new corrections" in clean_text:
+        correction_input = st.text_input("Please paste your corrections here:")
 
-        correction_parts = re.split(r"b\d+", correction_input.lower())
+        if correction_input:
+            import re
 
-        cleaned_corrections = []
+            correction_parts = re.split(r"b\d+", correction_input.lower())
 
-        for c in correction_parts:
-            c = c.strip()
+            cleaned_corrections = []
 
-            if c:
-                cleaned_corrections.append(c)
+            for c in correction_parts:
+                c = c.strip()
 
-        st.session_state.corrections = cleaned_corrections
+                if c:
+                    cleaned_corrections.append(c)
 
-        st.write("Corrections saved!")
+            st.session_state.corrections = cleaned_corrections
 
-elif "my corrections" in clean_text:
-    if st.session_state.corrections:
-        st.write("Your corrections:")
+            st.write("Corrections saved!")
 
-        for i, c in enumerate(st.session_state.corrections):
-            st.write(f"b{i+1}. {c}")
+    elif "my corrections" in clean_text:
+        if st.session_state.corrections:
+            st.write("Your corrections:")
 
-    else:
-        st.write("No corrections saved yet.")
+            for i, c in enumerate(st.session_state.corrections):
+                st.write(f"b{i+1}. {c}")
+
+        else:
+            st.write("No corrections saved yet.")
+
 
 
 
