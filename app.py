@@ -32,7 +32,7 @@ if "final_corrections" not in st.session_state:
 # 🧠 INPUT GATE
 # Case instructions
 if user_input:
-clean_text = user_input.lower()
+    clean_text = user_input.lower()
 
 if "new case" in clean_text:
     new_case = st.text_input("Please paste your case:")
