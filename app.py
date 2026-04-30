@@ -31,6 +31,7 @@ if "final_corrections" not in st.session_state:
 
 # 🧠 INPUT GATE
 # Case instructions
+
 if user_input:
     clean_text = user_input.lower()
 
