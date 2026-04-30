@@ -147,26 +147,27 @@ if user_input:
 if user_input:
     clean_text = user_input.lower()
 
-if "plan" in clean_text:
-    plan_input = st.text_input("Please write your plan:")
+    if "plan" in clean_text:
+        plan_input = st.text_input("Please write your plan:")
 
-    if plan_input:
-        st.session_state.plan = plan_input
-        st.write("Plan saved!")
+        if plan_input:
+            st.session_state.plan = plan_input
+            st.write("Plan saved!")
 
-    # SHOW PLAN
-    if st.session_state.plan:
-        st.write("📌 PLAN:")
-        st.write(st.session_state.plan)
+        # SHOW PLAN
+        if st.session_state.plan:
+            st.write("📌 PLAN:")
+            st.write(st.session_state.plan)
 
-        # SHOW CORRECTIONS BELOW
-        st.write("📎 CORRECTIONS:")
+            # SHOW CORRECTIONS BELOW
+            st.write("📎 CORRECTIONS:")
 
-        if st.session_state.corrections:
-            for i, c in enumerate(st.session_state.corrections):
-                st.write(f"b{i+1}. {c}")
-        else:
-            st.write("No corrections saved yet.")
+            if st.session_state.corrections:
+                for i, c in enumerate(st.session_state.corrections):
+                    st.write(f"b{i+1}. {c}")
+            else:
+                st.write("No corrections saved yet.")
+
 
 
 
