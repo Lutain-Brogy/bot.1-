@@ -171,8 +171,7 @@ if user_input:
             else:
                 st.write("No corrections saved yet.")
     # Steps instructions
-
-    if user_input:
+if user_input:
     clean_text = user_input.lower()
 
     if "steps" in clean_text:
@@ -185,9 +184,10 @@ if user_input:
     elif "my steps" in clean_text:
         if st.session_state.steps:
             st.write("Your steps:", st.session_state.steps)
+
         else:
             st.write("No steps saved yet.")
 
-
+    
 
 
