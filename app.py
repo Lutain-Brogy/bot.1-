@@ -185,11 +185,9 @@ if user_input:
             st.write("Saved!")
 
     elif "my steps" in clean_text:
-        if "my_steps" in st.session_state:
+        if st.session_state.steps:
             st.write("Your steps:", st.session_state.steps)
         else:
             st.write("No steps saved yet.")
-
-    
 
 
