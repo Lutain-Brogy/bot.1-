@@ -4,8 +4,6 @@ st.title("AI Business Assistant")
 
 user_input = st.text_input("You:")
 
-# 🧠 MEMORY (session state first)
-
 if "case" not in st.session_state:
     st.session_state.case = ""
 
