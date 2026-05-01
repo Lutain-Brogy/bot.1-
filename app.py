@@ -156,6 +156,7 @@ if user_input:
 if user_input:
     clean_text = user_input.lower()
 
+    # SAVE PLAN
     if "plan" in clean_text:
         plan_input = st.text_input("Please write your plan:")
 
@@ -163,29 +164,31 @@ if user_input:
             st.session_state.plan = plan_input
             st.write("Plan saved!")
 
-    # SHOW PLAN + PAINS + CORRECTIONS
-    if "my p" in st.session_state:
-        st.write("📌 PLAN:")
-        st.write(st.session_state.plan)
+    # SHOW PLAN + PAINS + CORRECTIONS (trigger: "my p")
+    if "my p" in clean_text:
+        if "plan" in st.session_state:
+            st.write("📌 PLAN:")
+            st.write(st.session_state.plan)
 
-        # PAINS
-        st.write("📎 PAINS:")
-        if "pains" in st.session_state and st.session_state.pains:
-            for i, p in enumerate(st.session_state.pains):
-                st.write(f"p{i+1}. {p}")
+            # PAINS
+            st.write("📎 PAINS:")
+            if "pains" in st.session_state and st.session_state.pains:
+                for i, p in enumerate(st.session_state.pains):
+                    st.write(f"p{i+1}. {p}")
+            else:
+                st.write("No pains saved yet.")
+
+            # CORRECTIONS
+            st.write("🔧 CORRECTIONS:")
+            if "corrections" in st.session_state and st.session_state.corrections:
+                for i, c in enumerate(st.session_state.corrections):
+                    st.write(f"c{i+1}. {c}")
+            else:
+                st.write("No corrections saved yet.")
+
         else:
-            st.write("No pains saved yet.")
+            st.write("No plans saved yet.")
 
-        # CORRECTIONS
-        st.write("🔧 CORRECTIONS:")
-        if "corrections" in st.session_state and st.session_state.corrections:
-            for i, c in enumerate(st.session_state.corrections):
-                st.write(f"c{i+1}. {c}")
-        else:
-            st.write("No corrections saved yet.")
-
-    else:
-        st.write("No plans saved yet.")
 
 
 # final correstions
