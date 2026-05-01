@@ -6,7 +6,7 @@ user_input = st.text_input("You:")
 
 # 🧠 MEMORY (session state first)
 if "case" not in st.session_state:
-    st.session_state.case = ""
+    st.session_state.case = []
 
 if "pains" not in st.session_state:
     st.session_state.pains = []
