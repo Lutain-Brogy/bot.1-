@@ -4,14 +4,18 @@ st.title("AI Business Assistant")
 
 user_input = st.text_input("You:")
 
+
 if "case" not in st.session_state:
     st.session_state.case = ""
+
 
 if "pains" not in st.session_state:
     st.session_state.pains = []
 
+
 if "factors" not in st.session_state:
     st.session_state.factors = []
+
 
 if "corrections" not in st.session_state:
     st.session_state.corrections = []
@@ -19,11 +23,14 @@ if "corrections" not in st.session_state:
 if "plan" not in st.session_state:
     st.session_state.plan = ""
 
+
 if "steps" not in st.session_state:
     st.session_state.steps = ""
 
+
 if "final_plan"not in st.session_state:
     st.session_state.final_plan = ""
+
 
 if "final_corrections" not in st.session_state:
     st.session_state.final_corrections = []
