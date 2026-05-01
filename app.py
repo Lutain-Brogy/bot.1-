@@ -177,11 +177,11 @@ if user_input:
 if user_input:
     clean_text = user_input.lower()
 
-    if "steps" in clean_text:
-        steps_input = st.text_input("Please paste your steps:")
+    if "step" in clean_text:
+        step_input = st.text_input("Please paste your steps:")
 
-        if steps_input:
-            st.session_state.steps = steps_input
+        if step_input:
+            st.session_state.steps = step_input
             st.write("Saved!")
 
     elif "my steps" in clean_text:
@@ -189,5 +189,4 @@ if user_input:
             st.write("Your steps:", st.session_state.steps)
         else:
             st.write("No steps saved yet.")
-
 
