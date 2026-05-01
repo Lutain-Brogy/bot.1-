@@ -50,8 +50,10 @@ elif "my case" in clean_text:
 
 
    # Pains instructions
-
-    elif "new pains" in clean_text:
+if user_input:
+    clean_text = user_input.lower()
+    
+    if "new pains" in clean_text:
         pain_input = st.text_input("Please paste your pains here:")
 
         if pain_input:
