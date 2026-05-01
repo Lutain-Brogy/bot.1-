@@ -163,19 +163,31 @@ if user_input:
             st.session_state.plan = plan_input
             st.write("Plan saved!")
 
-        # SHOW PLAN
-        if st.session_state.plan:
-            st.write("📌 PLAN:")
-            st.write(st.session_state.plan)
+    # SHOW PLAN + PAINS + CORRECTIONS
+    if "plan" in st.session_state:
+        st.write("📌 PLAN:")
+        st.write(st.session_state.plan)
 
-            # SHOW CORRECTIONS BELOW
-            st.write("📎 CORRECTIONS:")
+        # PAINS
+        st.write("📎 PAINS:")
+        if "pains" in st.session_state and st.session_state.pains:
+            for i, p in enumerate(st.session_state.pains):
+                st.write(f"p{i+1}. {p}")
+        else:
+            st.write("No pains saved yet.")
 
-            if st.session_state.corrections:
-                for i, c in enumerate(st.session_state.corrections):
-                    st.write(f"b{i+1}. {c}")
-            else:
-                st.write("No corrections saved yet.")
+        # CORRECTIONS
+        st.write("🔧 CORRECTIONS:")
+        if "corrections" in st.session_state and st.session_state.corrections:
+            for i, c in enumerate(st.session_state.corrections):
+                st.write(f"c{i+1}. {c}")
+        else:
+            st.write("No corrections saved yet.")
+
+    else:
+        st.write("No plans saved yet.")
+
+
 # final correstions
 if user_input:
     clean_text = user_input.lower()
@@ -209,6 +221,46 @@ if user_input:
             st.session_state.final_corrections = cleaned_corrections
 
             st.write("Corrections saved!")
+# final plan
+if "final_plan" not in st.session_state:
+    st.session_state.final_plan = ""
+
+if user_input:
+    clean_text = user_input.lower()
+
+    # SAVE FINAL PLAN
+    if "final plan" in clean_text:
+        plan_input = st.text_input("Please write your final plan:")
+
+        if plan_input:
+            st.session_state.final_plan = plan_input
+            st.write("Final plan saved!")
+
+    # SHOW FINAL PLAN + PAINS + FINAL CORRECTIONS
+    elif "f plan" in clean_text:
+        if st.session_state.final_plan:
+            st.write("📌 FINAL PLAN:")
+            st.write(st.session_state.final_plan)
+
+            # PAINS
+            st.write("📎 PAINS:")
+            if "pains" in st.session_state and st.session_state.pains:
+                for i, p in enumerate(st.session_state.pains):
+                    st.write(f"p{i+1}. {p}")
+            else:
+                st.write("No pains saved yet.")
+
+            # FINAL CORRECTIONS
+            st.write("🔧 FINAL CORRECTIONS:")
+            if "final_corrections" in st.session_state and st.session_state.final_corrections:
+                for i, c in enumerate(st.session_state.final_corrections):
+                    st.write(f"c{i+1}. {c}")
+            else:
+                st.write("No final corrections saved yet.")
+
+        else:
+            st.write("No final plan saved yet.")
+
 
     # Steps instructions
 if user_input:
