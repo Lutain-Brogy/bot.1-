@@ -126,7 +126,7 @@ if user_input:
         if correction_input:
             import re
 
-            correction_parts = re.split(r"b\d+", correction_input.lower())
+            correction_parts = re.split(r"c\d+", correction_input.lower())
 
             cleaned_corrections = []
 
@@ -145,10 +145,12 @@ if user_input:
             st.write("Your corrections:")
 
             for i, c in enumerate(st.session_state.corrections):
-                st.write(f"b{i+1}. {c}")
+                st.write(f"c{i+1}. {c}")
 
         else:
             st.write("No corrections saved yet.")
+
+
 #plan instructions
 if user_input:
     clean_text = user_input.lower()
