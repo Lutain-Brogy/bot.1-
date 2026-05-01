@@ -164,7 +164,7 @@ if user_input:
             st.write("Plan saved!")
 
     # SHOW PLAN + PAINS + CORRECTIONS
-    if "my plan" in st.session_state:
+    if "my p" in st.session_state:
         st.write("📌 PLAN:")
         st.write(st.session_state.plan)
 
