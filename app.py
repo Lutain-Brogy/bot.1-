@@ -180,7 +180,17 @@ if user_input:
 if user_input:
     clean_text = user_input.lower()
 
-    if "final corrections" in clean_text:
+    if "my f corrections" in clean_text:
+        if st.session_state.final_corrections:
+            st.write("Your final corrections:")
+
+            for i, c in enumerate(st.session_state.final_corrections):
+                st.write(f"c{i+1}. {c}")
+
+        else:
+            st.write("No final corrections saved yet.")
+
+    elif "final corrections" in clean_text:
         correction_input = st.text_input("Please paste your corrections here:")
 
         if correction_input:
@@ -199,17 +209,6 @@ if user_input:
             st.session_state.final_corrections = cleaned_corrections
 
             st.write("Corrections saved!")
-
-    elif "my final corrections" in clean_text:
-        if st.session_state.final_corrections:
-            st.write("Your corrections:")
-
-            for i, c in enumerate(st.session_state.final_corrections):
-                st.write(f"c{i+1}. {c}")
-
-        else:
-            st.write("No corrections saved yet.")
-
 
     # Steps instructions
 if user_input:
